@@ -74,6 +74,15 @@ Comments
 POST /api/comments  
 GET /api/tasks/{id}/comments  
 
+## Postman Collection
+
+Import files:
+
+docs/Task Management API.postman_collection.json  
+docs/Task Management API.postman_environment.json
+
+Then select environment **Task Management API** in Postman.
+
 ## Database Diagram
 ![ERD](docs/erd.png)
 
