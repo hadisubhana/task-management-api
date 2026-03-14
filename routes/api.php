@@ -18,7 +18,10 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::post('/comments', [CommentController::class, 'store']);
     Route::get('/tasks/{id}/comments', [CommentController::class, 'index']);
+    Route::delete('/comments/{comment}', [CommentController::class, 'destroy']);
 
     Route::get('/user', fn(Request $request) => $request->user());
-    
+
+    Route::post('/logout', [AuthController::class, 'logout']);
+
 });
