@@ -5,22 +5,20 @@ A RESTful API for managing projects, tasks, and comments.
 Built with Laravel 12.
 
 ## Features
-```bash
+
 - User Authentication (Laravel Sanctum)
 - Project management
 - Task tracking
 - Task comments
 - REST API architecture
 - Pagination
-```
 
 ## Tech Stack
-```bash
+
 - Laravel 12
 - MySQL
 - Laravel Sanctum
 - REST API
-````
 
 ## Installation
 
@@ -48,38 +46,48 @@ run server
 ```bash
 php artisan serve
 ```
+
 ## API Endpoints
 
-Auth
+### Auth
+| Method | Endpoint      | Description       |
+| ------ | ------------- | ----------------- |
+| POST   | /api/register | Register new user |
+| POST   | /api/login    | Login user        |
 
-POST /api/register  
-POST /api/login  
+### Projects
 
-Projects
+| Method | Endpoint           | Description        |
+| ------ | ------------------ | ------------------ |
+| GET    | /api/projects      | Get all projects   |
+| GET    | /api/projects/{id} | Get project detail |
+| POST   | /api/projects      | Create project     |
+| PUT    | /api/projects/{id} | Update project     |
+| DELETE | /api/projects/{id} | Delete project     |
 
-GET /api/projects  
-POST /api/projects  
-PUT /api/projects/{id}  
-DELETE /api/projects/{id}  
+### Tasks
 
-Tasks
+| Method | Endpoint        | Description     |
+| ------ | --------------- | --------------- |
+| GET    | /api/tasks      | Get all tasks   |
+| GET    | /api/tasks/{id} | Get task detail |
+| POST   | /api/tasks      | Create task     |
+| PUT    | /api/tasks/{id} | Update task     |
+| DELETE | /api/tasks/{id} | Delete task     |
 
-GET /api/tasks  
-POST /api/tasks  
-PUT /api/tasks/{id}  
-DELETE /api/tasks/{id}  
+### Comments
 
-Comments
-
-POST /api/comments  
-GET /api/tasks/{id}/comments  
+| Method | Endpoint                 | Description       |
+| ------ | ------------------------ | ----------------- |
+| POST   | /api/comments            | Create comment    |
+| GET    | /api/tasks/{id}/comments | Get task comments | 
 
 ## Postman Collection
 
 Import files:
 
-docs/Task Management API.postman_collection.json  
-docs/Task Management API.postman_environment.json
+- docs/Task Management API.postman_collection.json  
+- docs/Task Management API.postman_environment.json
 
 Then select environment **Task Management API** in Postman.
 
