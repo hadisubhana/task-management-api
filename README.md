@@ -1,65 +1,129 @@
 # Task Management API
 
-A RESTful API for managing projects, tasks, and comments.
+A RESTful API for managing **projects, tasks, and comments**.
 
-Built with Laravel 12.
+This API is built using Laravel and designed as the backend service for a fullstack task management application.
 
-## Features
+The system demonstrates authentication, relational database design, and clean REST API architecture suitable for real-world applications.
 
-- User Authentication (Laravel Sanctum)
-- Project management
-- Task tracking
-- Task comments
-- REST API architecture
-- Pagination
+Frontend Dashboard:
+https://github.com/hadisubhana/task-manager-frontend
 
-## Tech Stack
+---
 
-- Laravel 12
-- MySQL
-- Laravel Sanctum
-- REST API
+# Features
 
-## Installation
+* User authentication using Laravel Sanctum
+* Project CRUD
+* Task CRUD
+* Task comments system
+* RESTful API design
+* Pagination support
+* Clean API response structure
 
-clone repository
+---
+
+# Tech Stack
+
+* Laravel 12
+* MySQL
+* Laravel Sanctum
+* REST API architecture
+
+---
+
+# Installation
+
+Clone repository
+
 ```bash
 git clone https://github.com/hadisubhana/task-management-api
 ```
-install dependency
+
+Go to project folder
+
+```bash
+cd task-management-api
+```
+
+Install dependencies
+
 ```bash
 composer install
 ```
-setup env
+
+Setup environment
+
 ```bash
 cp .env.example .env
 ```
-generate key
+
+Generate application key
+
 ```bash
 php artisan key:generate
 ```
-run migration
+
+Configure database inside `.env`
+
+Run migrations
+
 ```bash
 php artisan migrate
 ```
-run seeder
+
+Run seeders
+
 ```bash
 php artisan db:seed
 ```
-run server
+
+Run development server
+
 ```bash
 php artisan serve
 ```
 
-## API Endpoints
+API will be available at:
 
-### Auth
+```
+http://127.0.0.1:8000/api
+```
+
+---
+
+# Authentication
+
+This API uses **Laravel Sanctum token authentication**.
+
+Login endpoint will return an access token:
+
+```json
+{
+  "token": "your_access_token"
+}
+```
+
+Use the token in request headers:
+
+```
+Authorization: Bearer YOUR_TOKEN
+```
+
+---
+
+# API Endpoints
+
+## Auth
+
 | Method | Endpoint      | Description       |
 | ------ | ------------- | ----------------- |
 | POST   | /api/register | Register new user |
 | POST   | /api/login    | Login user        |
 
-### Projects
+---
+
+## Projects
 
 | Method | Endpoint           | Description        |
 | ------ | ------------------ | ------------------ |
@@ -69,7 +133,9 @@ php artisan serve
 | PUT    | /api/projects/{id} | Update project     |
 | DELETE | /api/projects/{id} | Delete project     |
 
-### Tasks
+---
+
+## Tasks
 
 | Method | Endpoint        | Description     |
 | ------ | --------------- | --------------- |
@@ -79,25 +145,92 @@ php artisan serve
 | PUT    | /api/tasks/{id} | Update task     |
 | DELETE | /api/tasks/{id} | Delete task     |
 
-### Comments
+---
+
+## Comments
 
 | Method | Endpoint                 | Description       |
 | ------ | ------------------------ | ----------------- |
 | POST   | /api/comments            | Create comment    |
-| GET    | /api/tasks/{id}/comments | Get task comments | 
+| GET    | /api/tasks/{id}/comments | Get task comments |
+| DELETE | /api/comments/{id}       | Delete comments   |
 
-## Postman Collection
+---
+
+# API Response Example
+
+Example response when fetching projects:
+
+```json
+{
+  "message": "Created",
+  "data": [
+    {
+      "id": 1,
+      "name": "Website Redesign",
+      "description": "Update landing page UI",
+      "created_at": "2026-03-10"
+    }
+  ]
+}
+```
+
+---
+
+# Postman Collection
+
+You can test the API using Postman.
 
 Import files:
 
-- docs/Task Management API.postman_collection.json  
-- docs/Task Management API.postman_environment.json
+```
+docs/Task Management API.postman_collection.json
+docs/Task Management API.postman_environment.json
+```
 
-Then select environment **Task Management API** in Postman.
+Then select environment **Task Management API**.
 
-## Database Diagram
+Using: Postman
+
+---
+
+# Database Diagram
+
 ![ERD](docs/erd.png)
 
-## Author
+---
+
+# Related Project
+
+Frontend Dashboard:
+
+https://github.com/hadisubhana/task-manager-frontend
+
+Built with:
+
+* React
+* Tailwind CSS
+* Axios
+* React Router
+
+---
+
+# Author
 
 Hadi Subhana Malik
+
+Tech Stack:
+
+Laravel | React | REST API | MySQL | Tailwind
+
+---
+
+# Purpose
+
+This project was built as a portfolio project to demonstrate:
+
+* API integration
+* Full CRUD frontend
+* Authentication handling
+* Modern dashboard UI
+* Fullstack architecture
