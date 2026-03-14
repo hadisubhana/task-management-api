@@ -42,6 +42,10 @@ run migration
 ```bash
 php artisan migrate
 ```
+run seeder
+```bash
+php artisan db:seed
+```
 run server
 ```bash
 php artisan serve
