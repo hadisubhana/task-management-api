@@ -124,6 +124,20 @@
       "item": [
         {
           "name": "Create Project",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "let response = pm.response.json();\r",
+                  "pm.environment.set(\"project_id\", response.data.id);"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
           "request": {
             "auth": {
               "type": "noauth"
@@ -188,6 +202,69 @@
             }
           },
           "response": []
+        },
+        {
+          "name": "Update Project",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"name\": \"Updated Portfolio Project\",\r\n    \"description\": \"Updated task management system\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://task-management-api.test/api/projects/{{project_id}}",
+              "protocol": "http",
+              "host": [
+                "task-management-api",
+                "test"
+              ],
+              "path": [
+                "api",
+                "projects",
+                "{{project_id}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete Project",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "http://task-management-api.test/api/projects/{{project_id}}",
+              "protocol": "http",
+              "host": [
+                "task-management-api",
+                "test"
+              ],
+              "path": [
+                "api",
+                "projects",
+                "{{project_id}}"
+              ]
+            }
+          },
+          "response": []
         }
       ]
     },
@@ -196,6 +273,20 @@
       "item": [
         {
           "name": "Create Task",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "let response = pm.response.json();\r",
+                  "pm.environment.set(\"task_id\", response.data.id);"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
           "request": {
             "auth": {
               "type": "noauth"
@@ -210,13 +301,42 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n    \"project_id\": 1,\r\n    \"title\": \"Build login API\",\r\n    \"description\": \"create auth controller\"\r\n}",
+              "raw": "{\r\n    \"project_id\": {{project_id}},\r\n    \"title\": \"Build login API\",\r\n    \"description\": \"create auth controller\"\r\n}",
               "options": {
                 "raw": {
                   "language": "json"
                 }
               }
             },
+            "url": {
+              "raw": "http://task-management-api.test/api/tasks",
+              "protocol": "http",
+              "host": [
+                "task-management-api",
+                "test"
+              ],
+              "path": [
+                "api",
+                "tasks"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Tasks",
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}",
+                "type": "default"
+              }
+            ],
             "url": {
               "raw": "http://task-management-api.test/api/tasks",
               "protocol": "http",
@@ -248,7 +368,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n    \"title\": \"Build login API\",\r\n    \"description\": \"auth controller\",\r\n    \"status\": \"progress\"\r\n}",
+              "raw": "{\r\n    \"title\": \"Updated Build login API\",\r\n    \"description\": \"Updated auth controller\",\r\n    \"status\": \"progress\" //todo, progress, done\r\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -256,7 +376,7 @@
               }
             },
             "url": {
-              "raw": "http://task-management-api.test/api/tasks/1",
+              "raw": "http://task-management-api.test/api/tasks/{{task_id}}",
               "protocol": "http",
               "host": [
                 "task-management-api",
@@ -265,7 +385,37 @@
               "path": [
                 "api",
                 "tasks",
-                "1"
+                "{{task_id}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete Task",
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}",
+                "type": "default"
+              }
+            ],
+            "url": {
+              "raw": "http://task-management-api.test/api/tasks/{{task_id}}",
+              "protocol": "http",
+              "host": [
+                "task-management-api",
+                "test"
+              ],
+              "path": [
+                "api",
+                "tasks",
+                "{{task_id}}"
               ]
             }
           },
@@ -292,7 +442,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n    \"task_id\": 1,\r\n    \"content\": \"API login sudah selesai\"\r\n}",
+              "raw": "{\r\n    \"task_id\": {{task_id}},\r\n    \"content\": \"API login sudah selesai\"\r\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -329,7 +479,7 @@
               }
             ],
             "url": {
-              "raw": "http://task-management-api.test/api/tasks/1/comments",
+              "raw": "http://task-management-api.test/api/tasks/{{task_id}}/comments",
               "protocol": "http",
               "host": [
                 "task-management-api",
@@ -338,7 +488,7 @@
               "path": [
                 "api",
                 "tasks",
-                "1",
+                "{{task_id}}",
                 "comments"
               ]
             }
