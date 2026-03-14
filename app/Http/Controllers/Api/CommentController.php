@@ -60,8 +60,12 @@ class CommentController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Comment $comment)
     {
-        //
+        $comment->delete();
+
+        return response()->json([
+            'message' => 'Comment deleted'
+        ]);
     }
 }
